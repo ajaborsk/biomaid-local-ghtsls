@@ -1,0 +1,39 @@
+[[analytics.queries]]
+
+name = 'factures'
+parameters = [
+    {'name'='gestionnaire', 'default'= nan },
+]
+definition = [
+    'ExtFacture', # Toutes les factures
+    {'filter'=12},  # ...filter...
+    {'field'=12},  # ...annotate...
+]
+
+# Reconciliation (join) mode can be :
+#  - Outer: all left records are kept and only right matching records are kept
+#  - Full: all records are kept. If no match is found for a column, the other is filled with NULL values
+
+# Reconciliation (join) matching can be :
+#  - Exact: all the columns of the right records MUST match the columns of the left records (common SQL mode)
+#  - Approximative: ... Need to be defined ...
+
+[[analytics.axes]]
+
+query = 'factures'
+
+
+[[analytics.indicators]]
+
+name = 'test_indicator'
+
+
+[[analytics.reports]]
+
+name = 'test_report'
+cached = 86400  # One full day
+
+
+[[analytics.widgets]]
+
+name = 'test_widget'

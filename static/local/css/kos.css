@@ -1,0 +1,19 @@
+/* Quelques définitions de variables utilisées un partout par la suite */
+:root
+ {
+  --main-bg-color: #fff;
+  --main-fg-color: #000;
+  --main-color-theme-1a: #006683; /* Bleu CHU Amiens foncé */
+  --main-color-theme-1b: #007594; /* Bleu CHU Amiens */
+  --main-color-theme-1c: #0084a5; /* Bleu CHU Amiens clair */
+  --main-color-theme-2a: #d2691e; /* Orangé foncé Intranet CHU Amiens */
+  --main-color-theme-2b: #f09609; /* Orangé Intranet CHU Amiens */
+  --main-color-theme-2c: #b0cb52; /* Vert CHU Amiens clair */
+  --main-color-theme-3a: #d47204; /* Orangé CHU Amiens foncé */
+  --main-color-theme-3b: #ee7f00; /* Orangé CHU Amiens */
+  --main-color-theme-3c: #f29400; /* Orangé CHU Amiens clair */
+  --main-color-theme-4a: #63797c; /* Grisé CHU Amiens foncé */
+  --main-color-theme-4b: #95a5a4; /* Grisé CHU Amiens */
+  --main-color-theme-4c: #f2f2f2; /* Grisé CHU Amiens clair */
+  --min-width:1120;
+ }

@@ -1,0 +1,306 @@
+[[smart_views]]
+# ---------------------------------------------------------------------------------------------------------------------
+# Definition for named SmartView 'orders'
+# ---------------------------------------------------------------------------------------------------------------------
+name = 'orders'
+model = ['extable', 'ExtCommande']
+columns = ['exercice_ec', 'order_link', 'no_marche_ma', 'no_fournisseur_fr', 'intitule_fournisseur_fr', 'date_passation_ec',
+    'objet_depense_ec', 'no_uf_uf','libelle_uf_uf', 'compte_ordonnateur_cp', 'bloc_note',
+    'no_ligne_lc', 'libelle', 'qte_cdee_lc', 'mt_engage_lc', 'qte_recue_lc', 'mt_liquide_lc', 'lg_soldee_lc', 'age', 'analyse_cmd', 'analyse']
+selectable_columns = ['no_marche_ma', 'no_uf_uf','libelle_uf_uf', 'compte_ordonnateur_cp', 'analyse_cmd', 'analyse']
+exports = {'xlsx' = {'engine'= 'xlsx', 'label'= 'Microsoft Excel 2003+', 'filename'= "Commandes.xlsx" }}
+
+
+# This toml syntax seems weird but it works : Adds a 'settings' key to the current smart_view dict
+[smart_views.settings.analyse_cmd]
+title = "Analyse commande"
+format = 'analyse'
+
+
+# This toml syntax seems weird but it works : Adds a 'settings' key to the current smart_view dict
+[smart_views.settings.analyse]
+title = "Analyse ligne"
+format = 'analyse'
+
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.anomaly_level_cmd]
+label = "Niveau anomalie commande"
+type = 'select'
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='Non analysée', 'value'='{"analyse_cmd__max_level__isnull": true}'},
+    {'label'='OK', 'value'='{"analyse_cmd__max_level__lt": 2}'},
+    {'label'='Avec info', 'value'='{"analyse_cmd__max_level": 1}'},
+    {'label'='Pbm Mineur', 'value'='{"analyse_cmd__max_level": 2}'},
+    {'label'='A traiter', 'value'='{"analyse_cmd__max_level": 3}'},
+    {'label'='Erreur', 'value'='{"analyse_cmd__max_level": 4}'},
+]
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.anomaly_level_row]
+label = "Niveau anomalie ligne de commande"
+type = 'select'
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='Non analysée', 'value'='{"analyse__max_level__isnull": true}'},
+    {'label'='OK', 'value'='{"analyse__max_level__lt": 2}'},
+    {'label'='Avec info', 'value'='{"analyse__max_level": 1}'},
+    {'label'='Pbm Mineur', 'value'='{"analyse__max_level": 2}'},
+    {'label'='A traiter', 'value'='{"analyse__max_level": 3}'},
+    {'label'='Erreur', 'value'='{"analyse__max_level": 4}'},
+]
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.gest]
+label = "Gestionnaire"
+type = 'select'
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='IF', 'value'='{"commande__startswith": "IF"}'},
+    {'label'='II', 'value'='{"commande__startswith": "II"}'},
+    {'label'='IM', 'value'='{"commande__startswith": "IM"}'},
+    {'label'='IN', 'value'='{"commande__startswith": "IN"}'},
+    {'label'='6B', 'value'='{"commande__startswith": "6B"}'},
+    {'label'='8B', 'value'='{"commande__startswith": "8B"}'},
+    {'label'='9B', 'value'='{"commande__startswith": "9B"}'},
+]
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.exercice_ec]
+label = "Exercice"
+# name = 'exercice_ec'
+# fieldname = 'exercice_ec'
+type = 'select'
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='2017', 'value'='{"exercice_ec": "2017"}'},
+    {'label'='2018', 'value'='{"exercice_ec": "2018"}'},
+    {'label'='2019', 'value'='{"exercice_ec": "2019"}'},
+    {'label'='2020', 'value'='{"exercice_ec": "2020"}'},
+    {'label'='2021', 'value'='{"exercice_ec": "2021"}'},
+    {'label'='2022', 'value'='{"exercice_ec": "2022"}'},
+]
+
+[smart_views.user_filters.soldee]
+label = "Soldée"
+type = 'select'
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='Oui', 'value'='{"lg_soldee_lc": "O"}'},
+    {'label'='Non', 'value'='{"lg_soldee_lc": "N"}'},
+]
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.age]
+label = "Age"
+type = 'select'
+# Warning : JSON values MUST complies with python json syntax. Otherwise, choices will not be persistent
+#           always insert a ' ' between the ':' and the value in a dict !
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='> 1 an', 'value'='{"age__gt": "365"}'},
+    {'label'='> 6 mois', 'value'='{"age__gt": "182"}'},
+    {'label'='> 3 mois', 'value'='{"age__gt": "90"}'},
+    {'label'='> 1 mois', 'value'='{"age__gt": "30"}'},
+]
+
+[smart_views.user_filters.compte_ordonnateur_cp]
+# name = 'compte_ordonnateur_cp'
+label = "Compte"
+type = 'select'
+choices = {'label'= 'compte_ordonnateur_cp'}
+
+[smart_views.user_filters.no_uf_uf]
+label = "UF"
+type = 'select'
+choices = {'label'= 'concat(no_uf_uf, concat(" - ", libelle_uf_uf))'}
+
+[smart_views.user_filters.contenu]
+label = "Texte contient"
+type = 'contains'
+fieldnames = ['objet_depense_ec', 'bloc_note', 'libelle']
+
+[smart_views.user_filters.fournisseur]
+label = "Founisseur contient"
+type = 'contains'
+fieldnames = ['no_fournisseur_fr', 'intitule_fournisseur_fr']
+
+[smart_views.user_filters.hors_marche]
+label = "Hors-marché"
+type = 'select'
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='Oui', 'value'='{"no_marche_ma": "0"}'},
+    {'label'='Non', 'value'='{"no_marche_ma__gt": "1"}'},
+]
+
+[smart_views.user_filters.marche]
+label = "N° marché contient"
+type = 'contains'
+fieldnames = ['no_marche_ma']
+
+# Computed / added field
+[smart_views.add_field.order_link]
+title = "Commande"
+format = 'html'
+data = "concat('<a href=\"../order?order_id=', concat(commande, concat('\">', concat(commande, '</a>'))))"
+footer_data = 'count'
+
+# Computed / added field
+[smart_views.add_field.age]
+title = "Age (j)"
+format = 'integer'
+data = "day_age(date_passation_ec)"
+
+# Computed / added field
+[smart_views.add_field.no_fournisseur_fr]
+title = "N° Fournisseur"
+format = 'integer'
+data = "fournisseur__no_fournisseur_fr"
+
+# Computed / added field
+[smart_views.add_field.intitule_fournisseur_fr]
+title = "Nom Fournisseur"
+format = 'string'
+data = "fournisseur__intitule_fournisseur_fr"
+
+
+
+[[smart_views]]
+# ---------------------------------------------------------------------------------------------------------------------
+# Definition for named SmartView 'invoices'
+# ---------------------------------------------------------------------------------------------------------------------
+name = 'invoices'
+model = ['extable', 'ExtFacture']
+columns = ['type', 'emission', 'reception', 'order_link', 'age', 'fournisseur', 'etat', 'n_liq', 'n_mandat', 'montant_eur_ttc',
+    'dernier_commentaire']
+exports = {'xlsx' = {'engine'= 'xlsx', 'label'= 'Microsoft Excel 2003+', 'filename'= "Factures.xlsx" }}
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.type]
+label = "Type"
+type = 'select'
+# Warning : JSON values MUST complies with python json syntax. Otherwise, choices will not be persistent
+#           always insert a ' ' between the ':' and the value in a dict !
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='Avoir', 'value'='{"type": "A"}'},
+    {'label'='Facture', 'value'='{"type": "F"}'},
+]
+
+[smart_views.user_filters.gest]
+label = "Gestionnaire"
+type = 'select'
+# Warning : JSON values MUST complies with python json syntax. Otherwise, choices will not be persistent
+#           always insert a ' ' between the ':' and the value in a dict !
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='IF', 'value'='{"commande__startswith": "IF"}'},
+    {'label'='II', 'value'='{"commande__startswith": "II"}'},
+    {'label'='IM', 'value'='{"commande__startswith": "IM"}'},
+    {'label'='IN', 'value'='{"commande__startswith": "IN"}'},
+    {'label'='6B', 'value'='{"commande__startswith": "6B"}'},
+    {'label'='8B', 'value'='{"commande__startswith": "8B"}'},
+    {'label'='9B', 'value'='{"commande__startswith": "9B"}'},
+]
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.age]
+label = "Age"
+type = 'select'
+# Warning : JSON values MUST complies with python json syntax. Otherwise, choices will not be persistent
+#           always insert a ' ' between the ':' and the value in a dict !
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='> 90j', 'value'='{"age__gt": "90"}'},
+    {'label'='> 50j', 'value'='{"age__gt": "50"}'},
+    {'label'='> 30j', 'value'='{"age__gt": "30"}'},
+]
+
+[smart_views.user_filters.fournisseur]
+label = "Founisseur contient"
+type = 'contains'
+fieldnames = ['fournisseur']
+
+[smart_views.user_filters.etat]
+label = "Etat"
+type = 'select'
+choices = {'label'= 'etat'}
+
+
+# Computed / added field
+[smart_views.add_field.order_link]
+title = "Commande"
+format = 'html'
+data = "concat('<a href=\"../order?order_id=', concat(commande, concat('\">', concat(commande, '</a>'))))"
+footer_data = 'count'
+
+# Computed / added field
+[smart_views.add_field.age]
+title = "Age (j)"
+format = 'integer'
+data = "day_age(reception)"
+
+[[smart_views]]
+# ---------------------------------------------------------------------------------------------------------------------
+# Definition for named SmartView 'assets'
+# ---------------------------------------------------------------------------------------------------------------------
+name = 'assets'
+model = ['extable', 'ExtImmobilisation']
+columns = ['code', 'exercice_d_acquisition_fi', 'fiche', 'commande', 'order_link', 'libelle_du_bien_fi',
+    'date_de_mise_en_service_fi', 'duree_fi2', 'qte_uf_df1', 'repart_uf_df1', 'actif_uf_df2']
+exports = {'xlsx' = {'engine'= 'xlsx', 'label'= 'Microsoft Excel 2003+', 'filename'= "Immobilisations.xlsx" }}
+
+# Computed / added field
+[smart_views.add_field.order_link]
+title = "Commande"
+format = 'html'
+data = "concat('<a href=\"../order?order_id=', concat(commande, concat('\">', concat(commande, '</a>'))))"
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.exercice_ec]
+label = "Exercice"
+type = 'select'
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='2010', 'value'='{"exercice_d_acquisition_fi": "2010"}'},
+    {'label'='2011', 'value'='{"exercice_d_acquisition_fi": "2011"}'},
+    {'label'='2012', 'value'='{"exercice_d_acquisition_fi": "2012"}'},
+    {'label'='Avant 2012', 'value'='{"exercice_d_acquisition_fi__lt": "2012"}'},
+    {'label'='2013', 'value'='{"exercice_d_acquisition_fi": "2013"}'},
+    {'label'='2014', 'value'='{"exercice_d_acquisition_fi": "2014"}'},
+    {'label'='2015', 'value'='{"exercice_d_acquisition_fi": "2015"}'},
+    {'label'='2016', 'value'='{"exercice_d_acquisition_fi": "2016"}'},
+    {'label'='2017', 'value'='{"exercice_d_acquisition_fi": "2017"}'},
+    {'label'='2018', 'value'='{"exercice_d_acquisition_fi": "2018"}'},
+    {'label'='2019', 'value'='{"exercice_d_acquisition_fi": "2019"}'},
+    {'label'='2020', 'value'='{"exercice_d_acquisition_fi": "2020"}'},
+    {'label'='2021', 'value'='{"exercice_d_acquisition_fi": "2021"}'},
+    {'label'='2022', 'value'='{"exercice_d_acquisition_fi": "2022"}'},
+]
+
+# This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
+[smart_views.user_filters.gest]
+label = "Gestionnaire"
+type = 'select'
+# Warning : JSON values MUST complies with python json syntax. Otherwise, choices will not be persistent
+#           always insert a ' ' between the ':' and the value in a dict !
+choices = [
+    {'label'='Tous', 'value'='{}'},
+    {'label'='Aucun', 'value'='{"commande__startswith": "0"}'},
+    {'label'='6A', 'value'='{"commande__startswith": "6A"}'},
+    {'label'='7B', 'value'='{"commande__startswith": "7B"}'},
+    {'label'='7M', 'value'='{"commande__startswith": "7M"}'},
+    {'label'='9B', 'value'='{"commande__startswith": "9B"}'},
+    {'label'='9I', 'value'='{"commande__startswith": "9I"}'},
+    {'label'='IR', 'value'='{"commande__startswith": "IR"}'},
+    {'label'='IS', 'value'='{"commande__startswith": "IS"}'},
+]
+
+# Computed / added field
+[smart_views.add_field.age]
+title = "Age (j)"
+format = 'integer'
+data = "day_age(date_de_mise_en_service_fi)"
+footer_data = 'count'

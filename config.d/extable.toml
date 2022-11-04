@@ -1,0 +1,144 @@
+[[extable.tables]]
+name = 'Fournisseur'
+engine = 'csv'
+path = 'magh2'
+filename = 'last:chuap_magh2_fournisseurs.csv'
+
+# Guessed columns types from extable_guess command
+column.no_fournisseur_fr = {type = "integer", src_column = "No Fournisseur (fr)"}
+column.intitule_fournisseur_fr = {type = "string", src_column = "Intitulé Fournisseur (fr)"}
+column.raison_sociale_fournisseur_fr = {type = "string", src_column = "Raison sociale Fournisseur (fr)"}
+
+key = ['no_fournisseur_fr']
+
+[[extable.tables]]
+name = 'Commande'
+engine = 'csv'
+path = 'magh2'
+filename = 'all:commandes/chuap_*.csv'
+
+# Guessed columns types from extable_guess command
+column.gest_ec = {type = "string", src_column = "Gest. (ec)"}
+column.no_cde_ec = {type = "integer", src_column = "No Cde (ec)"}
+column.exercice_ec = {type = "integer", src_column = "Exercice (ec)"}
+column.no_marche_ma = {type = "integer", src_column = "No Marché (ma)"}
+column.nomenclature_lc = {type = "float", src_column = "Nomenclature (lc)"}
+# column.no_fournisseur_fr = {type = "integer", src_column = "No Fournisseur (fr)"}
+column.fournisseur = {type = "foreign_key", src_column = "No Fournisseur (ma2)", foreign_table="extable.ExtFournisseur", foreign_column="no_fournisseur_fr"}
+# column.intitule_fournisseur_fr = {type = "string", src_column = "Intitulé Fournisseur (fr)"}
+column.date_passation_ec = {type = "datetime", src_column = "Date Passation (ec)"}
+column.objet_depense_ec = {type = "string", src_column = "Objet Dépense (ec)"}
+column.no_ligne_lc = {type = "integer", src_column = "No Ligne (lc)"}
+column.no_uf_uf = {type = "integer", src_column = "No UF (uf)"}
+column.libelle_uf_uf = {type = "string", src_column = "Libellé UF (uf)"}
+column.compte_ordonnateur_cp = {type = "string", src_column = "No Compte (cp)"}
+column.no_compte_cp = {type = "string", src_column = "No Compte (cp)"}
+column.libelle_l1_lc = {type = "string", src_column = "Libellé L1 (lc)"}
+column.libelle_l2_lc = {type = "string", src_column = "Libellé L2 (lc)"}
+column.libelle_l3_lc = {type = "string", src_column = "Libellé L3 (lc)"}
+column.libelle_l4_lc = {type = "string", src_column = "Libellé L4 (lc)"}
+column.bloc_note_1_ec = {type = "string", src_column = "Bloc Note 1 (ec)"}
+column.bloc_note_2_ec = {type = "string", src_column = "Bloc Note 2 (ec)"}
+column.no_operation_op = {type = "string", src_column = "No Opération (op)"}
+column.lib_operation_op = {type = "string", src_column = "Lib. Opération (op)"}
+column.qte_cdee_lc = {type = "integer", src_column = "Qté Cdée (lc)"}
+column.qte_recue_lc = {type = "integer", src_column = "Qté Reçue (lc)"}
+column.mt_engage_lc = {type = "float", src_column = "Mt Engagé (lc)"}
+column.mt_liquide_lc = {type = "float", src_column = "Mt liquidé (lc)"}
+column.lg_soldee_lc = {type = "string", src_column = "Lg Soldée (lc)"}
+column.code_famille_lc = {type = "string", src_column = "Code Famille (lc)"}
+
+# Add a (computed) column
+column.commande = {'type'='string', 'data'='concat(gest_ec, format("{:06d}", no_cde_ec))'}
+column.libelle = {'type'='string', 'data'='concat(libelle_l1_lc, concat("\n", concat(libelle_l2_lc, concat("\n", concat(libelle_l3_lc, concat("\n", libelle_l4_lc))))))'}
+column.bloc_note = {'type'='string', 'data'='concat(bloc_note_1_ec, concat("\n", bloc_note_2_ec))'}
+# Analyse de la commande, stockée dans la première ligne de la commande
+column.analyse_cmd = {'type'='json', 'data'='{}'}
+# Analyse de la ligne de commande
+column.analyse = {'type'='json', 'data'='{}'}
+
+key = ['commande', 'no_ligne_lc']
+
+[[extable.tables]]
+name = 'Immobilisation'
+path = 'magh2'
+filename = "immobilisations.csv"
+engine = 'csv'
+
+# Guessed columns types from extable_guess command
+column.exercice_d_acquisition_fi = {type = "integer", src_column = "Exercice d'acquisition (fi)"}
+column.no_fiche_fi = {type = "integer", src_column = "No Fiche (fi)"}
+column.no_uf_df = {type = "integer", src_column = "No UF (df)"}
+column.libelle_uf_df = {type = "string", src_column = "Libellé UF (df)"}
+column.compte_ordonnateur_cp = {type = "string", src_column = "Compte Ordonnateur (cp)"}
+column.libelle_compte_cp = {type = "string", src_column = "Libellé Compte (cp)"}
+column.ligne_commande_df = {type = "integer", src_column = "Ligne Commande (df)"}
+column.no_interne_fi = {type = "string", src_column = "No Interne (fi)"}
+column.gest_cde_df = {type = "string", src_column = "Gest Cde (df)"}
+column.no_cde_df = {type = "integer", src_column = "No Cde (df)"}
+column.libelle_du_bien_fi = {type = "string", src_column = "Libellé du bien (fi)"}
+column.date_de_mise_en_service_fi = {type = "datetime", src_column = "Date de mise en service (fi)"}
+column.mode_gest_fi1 = {type = "string", src_column = "Mode Gest (fi1)"}
+column.duree_fi2 = {type = "integer", src_column = "Durée (fi2)"}
+column.df_amort_fi2 = {type = "datetime", src_column = "DF Amort (fi2)"}
+column.code_famille_fe = {type = "integer", src_column = "Code Famille (fe)"}
+column.libelle_famille_fe = {type = "string", src_column = "Libellé Famille (fe)"}
+column.repartition_fi1 = {type = "money", src_column = "Répartition (fi1)"}
+column.qte_uf_df1 = {type = "integer", src_column = "Qté UF (df1)"}
+column.repart_uf_df1 = {type = "integer", src_column = "Répart. UF (df1)"}
+column.actif_uf_df2 = {type = "money", src_column = "Actif UF (df2)"}
+
+column.fiche = {'type'='string', 'data'='concat(exercice_d_acquisition_fi, concat("-", format("{:05d}", no_fiche_fi)))'}
+column.code = {'type'='string', 'data'='concat(concat(concat(exercice_d_acquisition_fi, concat("-", format("{:05d}", no_fiche_fi))), "-"), format("{:04d}", no_uf_df))'}
+column.commande = {'type'='string', 'data'="concat(gest_cde_df, format('{:06d}', no_cde_df))"}
+column.analyse = {'type'='json', 'data'='"{}"'}
+
+key = ['code']
+
+[[extable.tables]]
+name = 'Facture'
+engine = 'csv'
+path = 'prodige'
+filename = "last:export-*.csv"
+separator = ";"
+preprocess = "fix_nb_columns"
+
+column.type = {type = "string", src_column = "Type"}
+column.fournisseur = {type = "string", src_column = "Fournisseur"}
+column.reference_facture = {type = "string", src_column = "Référence facture"}
+column.emission = {type = "datetime", src_column = "Emission"}
+column.reception = {type = "datetime", src_column = "Réception"}
+column.n_engagement = {type = "string", src_column = "N° engagement Chorus"}
+column.montant_ttc = {type = "string", src_column = "Montant TTC"}
+column.etat = {type = "string", src_column = "Etat"}
+column.n_de_lot = {type = "string", src_column = "N° de lot"}
+column.code_service = {type = "string", src_column = "Code service"}
+column.n_liq = {type = "integer", src_column = "N° Liq."}
+column.traite_automatiquement = {type = "string", src_column = "Traité Automatiquement"}
+column.commande_magh2 = {type = "string", src_column = "Commande Magh2"}
+column.n_mandat = {type = "integer", src_column = "N° Mandat"}
+column.dernier_commentaire = {type = "string", src_column = "Dernier commentaire"}
+
+# Add (computed) columns
+column.commande = {'type'='string', 'data'='find_magh2_order(n_engagement)'}
+column.montant_eur_ttc = {'type'='money', 'data'='to_amount(montant_ttc)'}
+
+# column.json_order_link = {'type'='string', 'data'={'model'='Commande','conditions'={},'foreign'={'commande'='commande'}}}
+
+key = ['fournisseur', 'reference_facture']
+
+[[extable.tables]]
+name = 'ProcedureAchat'
+engine = 'excel'
+path = 'magh2'
+filename = 'PointDRB.xlsx'
+
+header_row = 2
+
+[[extable.tables]]
+name = 'Equipement'
+engine = 'database'
+database = 'gmao'
+model = 'assetplusconnect.BEq1996'
+
+column.code = {type = "string", src_column = "n_imma"}

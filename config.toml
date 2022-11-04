@@ -1,0 +1,50 @@
+[ENABLED_ALERTS]
+    [ENABLED_ALERTS.common]
+        useless-role-entry = true
+    [ENABLED_ALERTS.dem]
+        demand-to-dispatch = true
+        campaign-redirect = true
+    [ENABLED_ALERTS.drachar]
+        previsionnel-sans-date = true
+    [ENABLED_ALERTS.finance]
+        # commande-non-soldee-1 = true
+
+[BDD]
+    [BDD.GEF]
+        model = "magh2"
+        version = "1.0"
+    [BDD.GMAO]
+        model = "assetplus"
+        version = "v10.8"
+
+[LINK]
+    [LINK.DEFAUT]
+        structure = "ON" # ON, OFF ou FILE
+        marque = "ON" # ON, OFF ou FILE
+        type = "ON" # ON, OFF ou FILE
+    [LINK.CHUA]
+        structure = "FILE" # ON, OFF ou FILE
+    [LINK.IFF]
+        structure = "FILE" # ON, OFF ou FILE
+    [LINK.CHD]
+        structure = "OFF" # ON, OFF ou FILE
+
+[LINKED_FILES]
+
+    [LINKED_FILES.DEFAUT]
+        compte = "" # nom du fichier avec extension
+        structure = "" # nom du fichier avec extension
+    [LINKED_FILES.CHUA]
+        compte = "CHUA_GEF_COMPTE_05-08-2021.csv" # nom du fichier avec extension
+        structure = "structure.csv" # nom du fichier avec extension
+    [LINKED_FILES.CHD]
+        structure = "" # nom du fichier avec extension
+
+    [LINKED_FILES.IFF]
+        structure = "" # nom du fichier avec extension
+
+[DAILY_UPDATE]
+    [DAILY_UPDATE.CHUA]
+        structure = "OUI" # OUI ou NON
+
+
