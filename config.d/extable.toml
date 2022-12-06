@@ -142,3 +142,122 @@ database = 'gmao'
 model = 'assetplusconnect.BEq1996'
 
 column.code = {type = "string", src_column = "n_imma"}
+
+[[extable.tables]]
+name = 'Dra94Previsionnel'
+engine = 'tps'
+path = 'dra94'
+filename = 'prevision.tps'
+
+column.record_no = {type = "integer", src_column = "RecNo'"}
+column.programme = {type = "string", src_column = "PROGRAMME"}
+column.ligne = {type = "integer", src_column = "LIGNE"}
+column.service = {type = "string", src_column = "SERVICE"}
+column.code_famille = {type = "integer", src_column = "CODEFAMILLE"}
+column.qte_demandee = {type = "float", src_column = "QUANTITEDMD"}
+column.intitule = {type = "string", src_column = "INTITULE"}
+column.qte_acquise = {type = "float", src_column = "QUANTITEACQ"}
+# column.cout_francs = {type = "money", src_column = "COUTF"}
+column.cout_euros = {type = "money", src_column = "COUTE"}
+column.remarque = {type = "string", src_column = "REMARQUE"}
+column.cellule = {type = "string", src_column = "CELLULE"}
+column.cout_realise = {type = "money", src_column = "COUTREA"}
+column.solde = {type = "integer", src_column = "SOLDE"}
+column.code_uf = {type = "integer", src_column = "UF"}
+
+key = ['record_no']
+
+[[extable.tables]]
+name = 'Dra94Dossier'
+engine = 'tps'
+path = 'dra94'
+filename = 'DOSSIER.TPS'
+
+column.record_no = {type = "integer", src_column = "RecNo'"}
+column.numero = {type = "integer", src_column = "NUMERO"}
+column.date_dossier = {type = "datetime", src_column = "DATEDOSSIER"}
+column.fournisseur = {type = "string", src_column = "fourniss"}
+column.code_fournisseur = {type = "float", src_column = "codefouratelier"}
+column.point = {type = "float", src_column = "point"}
+column.contact_fournisseur = {type = "string", src_column = "NOMSTE"}
+column.numero_devis = {type = "string", src_column = "NDEVIS"}
+column.date_devis = {type = "datetime", src_column = "DATEDEVIS"}
+column.montant = {type = "money", src_column = "MONTANTE"}
+column.code_famille = {type = "integer", src_column = "codefamille"}
+column.contact = {type = "string", src_column = "contact"}
+column.contact_livraison = {type = "string", src_column = "contactlivraison"}
+column.numero_compte = {type = "string", src_column = "compte"}
+column.ugap = {type = "string", src_column = "UGAP"}
+column.programme = {type = "string", src_column = "NPROG"}
+column.ligne = {type = "float", src_column = "ligne"}
+column.divers = {type = "string", src_column = "DIVERS"}
+column.dsio = {type = "integer", src_column = "dsio"}
+column.transmis = {type = "datetime", src_column = "transmis"}
+column.no_commande = {type = "string", src_column = "bon_commande"}
+column.date_commande = {type = "integer", src_column = "datecde"}
+column.fin_dossier = {type = "integer", src_column = "fin_dossier"}
+column.cellule = {type = "string", src_column = "cellule"}
+column.no_marche = {type = "string", src_column = "n_marche"}
+column.imprime = {type = "integer", src_column = "imprime"}
+column.pieces_jointes = {type = "integer", src_column = "piecejointe"}
+
+key = ['record_no']
+
+[[extable.tables]]
+name = 'Dra94Ligne'
+engine = 'tps'
+path = 'dra94'
+filename = 'ACHAT_new.TPS'
+
+column.record_no = {type = "integer", src_column = "RecNo'"}
+column.departement = {type = "string", src_column = "DEPARTEMENT"}
+column.date_dossier = {type = "datetime", src_column = "DATEDOSSIER"}
+column.tri = {type = "string", src_column = "TRI"}
+column.numero_dossier = {type = "integer", src_column = "NUMERO"}
+column.dossier = {type = "foreign_key", src_column = "NUMERO", foreign_table="extable.ExtDra94Dossier", foreign_column="numero"}
+column.code_uf = {type = "string", src_column = "N_UF"}
+column.cadre = {type = "string", src_column = "SURVEILLANT"}
+column.designation = {type = "string", src_column = "DESIGN"}
+column.designation_cneh = {type = "string", src_column = "DESIGN_CNEH"}
+column.code_cneh = {type = "string", src_column = "CNEH"}
+column.specificite = {type = "string", src_column = "SPECIFICITE"}
+column.type_modele = {type = "string", src_column = "TYPE"}
+column.reference = {type = "string", src_column = "REFERENCE"}
+column.quantite = {type = "float", src_column = "QTE"}
+column.accessoires = {type = "string", src_column = "ACCESS"}
+column.fournisseur = {type = "string", src_column = "FOURNISS"}
+column.contact_fournisseur = {type = "string", src_column = "NOMSTE"}
+column.equipement_a_recuperer = {type = "string", src_column = "EQUIP_RECUP"}
+column.mutation_reforme = {type = "string", src_column = "MUTATION_REF"}
+column.service = {type = "string", src_column = "SERVICE"}
+column.formation = {type = "string", src_column = "FORMATION"}
+column.visite_fin_garantie = {type = "string", src_column = "VISITE_FIN_G"}
+column.pu_ttc = {type = "money", src_column = "PTTCE"}
+column.code_uf_mutation = {type = "string", src_column = "NUF_MUT"}
+column.service_miutation = {type = "string", src_column = "SRV_MUT"}
+column.sct_mutation = {type = "string", src_column = "SCT_MUT"}
+column.montant = {type = "money", src_column = "TOTALE"}
+column.no_reforme = {type = "float", src_column = "REFORME"}
+column.duree_garantie = {type = "float", src_column = "DUREE_GARANTIE"}
+column.jours_formation = {type = "float", src_column = "JOUR_FORM"}
+column.site = {type = "string", src_column = "SITE"}
+column.dsio = {type = "float", src_column = "DSIO"}
+column.direction = {type = "string", src_column = "DIRECTION"}
+column.rubrique = {type = "string", src_column = "RUBRIQUE"}
+column.annee_rubrique = {type = "float", src_column = "ANNEERUB"}
+column.choix = {type = "string", src_column = "CHOIX"}
+column.cout_maintenante = {type = "money", src_column = "MAINTENANCE_E"}
+column.supplementaire = {type = "string", src_column = "SUPPLEMENTAIRE"}
+column.marque = {type = "string", src_column = "MARQUE"}
+column.remise = {type = "float", src_column = "REMISE"}
+column.pu_ht = {type = "money", src_column = "PUHTE"}
+column.gain_ht = {type = "money", src_column = "GAIN"}
+column.date_reception = {type = "datetime", src_column = "DATE_RECEPTION"}
+column.date_mise_en_service = {type = "datetime", src_column = "DATE_SERVICE"}
+column.recu = {type = "string", src_column = "RECU"}
+column.installe = {type = "string", src_column = "INSTALL"}
+column.taux_tva = {type = "float", src_column = "TAUXTVA"}
+column.contrat = {type = "string", src_column = "CONTRAT"}
+column.classe = {type = "string", src_column = "CLASSE"}
+
+key = ['record_no']
