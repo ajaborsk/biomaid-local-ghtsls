@@ -125,7 +125,7 @@ column.montant_eur_ttc = {'type'='money', 'data'='to_amount(montant_ttc)'}
 
 # column.json_order_link = {'type'='string', 'data'={'model'='Commande','conditions'={},'foreign'={'commande'='commande'}}}
 
-key = ['fournisseur', 'reference_facture']
+# key = ['fournisseur', 'reference_facture']
 
 [[extable.tables]]
 name = 'ProcedureAchat'
@@ -194,7 +194,7 @@ column.divers = {type = "string", src_column = "DIVERS"}
 column.dsio = {type = "integer", src_column = "dsio"}
 column.transmis = {type = "datetime", src_column = "transmis"}
 column.no_commande = {type = "string", src_column = "bon_commande"}
-column.date_commande = {type = "integer", src_column = "datecde"}
+column.date_commande = {type = "datetime", src_column = "datecde"}
 column.fin_dossier = {type = "integer", src_column = "fin_dossier"}
 column.cellule = {type = "string", src_column = "cellule"}
 column.no_marche = {type = "string", src_column = "n_marche"}
