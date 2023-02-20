@@ -1,0 +1,46 @@
+[cockpit.common.common]
+editable = true
+
+[[cockpit.common.common.layout]]
+x = 0
+y = 0
+w = 16
+h = 2
+i = 0
+show_title = true
+title = ""
+w_class = "simple_text"
+w_params = "{\"text\":\"Portail GEQIP\",\"font_size\":\"40\",\"text_align\":\"center\",\"background_color\":\"#deddda\",\"text_color\":\"#000000\"}"
+
+[[cockpit.common.common.layout]]
+x = 2
+y = 4
+w = 1
+h = 2
+i = 1
+show_title = false
+title = "Yes2"
+w_class = "simple_light"
+w_params = "{\"color\":\"green\"}"
+
+[[cockpit.common.common.layout]]
+x = 3
+y = 4
+w = 1
+h = 3
+i = 2
+show_title = true
+title = "Yes3"
+w_class = "light_and_text"
+w_params = "{\"text\":\"Alerte !\",\"color\":\"red\"}"
+
+[[cockpit.common.common.layout]]
+x = 4
+y = 4
+w = 1
+h = 4
+i = 3
+show_title = false
+title = "Yes4"
+w_class = "a_repartir"
+w_params = "{}"

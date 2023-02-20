@@ -163,10 +163,9 @@ BIOM_AID_PORTALS = {
         "global-status-message": global_status_message_func,
         # 'main-status-message': lambda params:_("I'm {user.first_name} {user.last_name}").format(**params),
         "user-status-message": user_status_message_func,
-        "home-contents": {
-            # Mettre ici les différentes 'tuiles' de la page d'accueil (ou tout autre système de page d'accueil / tableau de bord
-            #  à définir...)
-        },
+        "home-contents": "cockpit.geqip.dem",
+        # Mettre ici les différentes 'tuiles' de la page d'accueil (ou tout autre système de page d'accueil / tableau de bord
+        #  à définir...)
         "external-menu": ("intranet", "annuaire", "asset-web"),
         "main-menu": (
             {

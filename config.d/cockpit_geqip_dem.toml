@@ -1,0 +1,53 @@
+[cockpit.geqip.dem]
+editable = false
+
+[[cockpit.geqip.dem.layout]]
+x = 0
+y = 0
+w = 16
+h = 2
+i = 0
+show_title = true
+title = ""
+w_class = "simple_text"
+w_params = "{\"text\":\"Simple FIXED text => GEQIP cockpit\",\"text_color\":\"#26a269\"}"
+
+[[cockpit.geqip.dem.layout]]
+x = 0
+y = 2
+w = 4
+h = 7
+i = 1
+title = "Plan biomédical (nb)"
+w_class = "nb_previsionnel_par_expert"
+w_params = "{\"discipline\":\"BM\"}"
+
+[[cockpit.geqip.dem.layout]]
+x = 4
+y = 2
+w = 4
+h = 7
+i = 2
+title = "Plan biomédical (€)"
+w_class = "montant_previsionnel_par_expert"
+w_params = "{\"discipline\":\"BM\"}"
+
+[[cockpit.geqip.dem.layout]]
+x = 8
+y = 2
+w = 4
+h = 7
+i = 3
+title = "Plan équipements (nb)"
+w_class = "nb_previsionnel_par_expert"
+w_params = "{\"discipline\":\"EQ\"}"
+
+[[cockpit.geqip.dem.layout]]
+x = 12
+y = 2
+w = 4
+h = 7
+i = 4
+title = "Plan équipements (€)"
+w_class = "montant_previsionnel_par_expert"
+w_params = "{\"discipline\":\"EQ\"}"
