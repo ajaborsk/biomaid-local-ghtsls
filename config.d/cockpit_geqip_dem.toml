@@ -10,7 +10,12 @@ i = 0
 show_title = true
 title = ""
 w_class = "simple_text"
-w_params = "{\"text\":\"Simple FIXED text => GEQIP cockpit\",\"text_color\":\"#26a269\"}"
+
+[cockpit.geqip.dem.layout.w_params]
+text = "GEQIP cockpit"
+text_color = "#000000"
+font_size = 48
+background_color = "#ddd"
 
 [[cockpit.geqip.dem.layout]]
 x = 0
