@@ -1,6 +1,10 @@
 [cockpit.geqip.dem]
-editable = false
-
+rows = 32
+columns = 16
+h_spacing = 12
+v_spacing = 12
+editable = true
+available_widgets = ["simple_text", "my_alerts", "demo_pie_chart", "simple_light", "light_and_text", "a_repartir", "simple_scalar", "nb_previsionnel_par_expert", "montant_previsionnel_par_expert"]
 [[cockpit.geqip.dem.layout]]
 x = 0
 y = 0
@@ -12,7 +16,7 @@ title = ""
 w_class = "simple_text"
 
 [cockpit.geqip.dem.layout.w_params]
-text = "GEQIP cockpit"
+text = "GEQIP <b>cockpi<br><em>t</em></b>"
 text_color = "#000000"
 font_size = 48
 background_color = "#ddd"
@@ -25,7 +29,9 @@ h = 7
 i = 1
 title = "Plan biomédical (nb)"
 w_class = "nb_previsionnel_par_expert"
-w_params = "{\"discipline\":\"BM\"}"
+
+[cockpit.geqip.dem.layout.w_params]
+discipline = "BM"
 
 [[cockpit.geqip.dem.layout]]
 x = 4
@@ -35,7 +41,9 @@ h = 7
 i = 2
 title = "Plan biomédical (€)"
 w_class = "montant_previsionnel_par_expert"
-w_params = "{\"discipline\":\"BM\"}"
+
+[cockpit.geqip.dem.layout.w_params]
+discipline = "BM"
 
 [[cockpit.geqip.dem.layout]]
 x = 8
@@ -45,7 +53,9 @@ h = 7
 i = 3
 title = "Plan équipements (nb)"
 w_class = "nb_previsionnel_par_expert"
-w_params = "{\"discipline\":\"EQ\"}"
+
+[cockpit.geqip.dem.layout.w_params]
+discipline = "EQ"
 
 [[cockpit.geqip.dem.layout]]
 x = 12
@@ -55,4 +65,6 @@ h = 7
 i = 4
 title = "Plan équipements (€)"
 w_class = "montant_previsionnel_par_expert"
-w_params = "{\"discipline\":\"EQ\"}"
+
+[cockpit.geqip.dem.layout.w_params]
+discipline = "EQ"
