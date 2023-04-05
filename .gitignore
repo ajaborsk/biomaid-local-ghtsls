@@ -100,7 +100,7 @@ instance/
 docs/_build/
 docs/autoapi/
 # These are symlynks created by manage.py make_docs command
-docs/*/doc_*
+# docs/*/doc_*
 
 # PyBuilder
 target/
