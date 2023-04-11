@@ -15,13 +15,13 @@ exports = {xlsx = {engine= 'xlsx', label= 'Microsoft Excel 2003+', filename= "Co
 # This toml syntax seems weird but it works : Adds a 'settings' key to the current smart_view dict
 [smart_views.settings.analyse_cmd]
 title = "Analyse commande"
-format = 'analyse'
+format = 'analysis'
 
 
 # This toml syntax seems weird but it works : Adds a 'settings' key to the current smart_view dict
 [smart_views.settings.analyse]
 title = "Analyse ligne"
-format = 'analyse'
+format = 'analysis'
 
 
 # This toml syntax seems weird but it works : Adds a 'user_filters' key to the current smart_view dict
@@ -249,9 +249,14 @@ data = "day_age(reception)"
 # ---------------------------------------------------------------------------------------------------------------------
 name = 'assets'
 model = ['extable', 'ExtImmobilisation']
-columns = ['code', 'exercice_d_acquisition_fi', 'fiche', 'commande', 'order_link', 'libelle_du_bien_fi',
-    'date_de_mise_en_service_fi', 'duree_fi2', 'qte_uf_df1', 'repart_uf_df1', 'actif_uf_df2']
+columns = ['code', 'exercice_d_acquisition_fi', 'fiche', 'order_link', 'libelle_du_bien_fi',
+    'date_de_mise_en_service_fi', 'duree_fi2', 'qte_uf_df1', 'repart_uf_df1', 'actif_uf_df2', 'residuel', 'analyse']
 exports = {xlsx = {engine= 'xlsx', label= 'Microsoft Excel 2003+', filename= "Immobilisations.xlsx" }}
+
+# This toml syntax seems weird but it works : Adds a 'settings' key to the current smart_view dict
+[smart_views.settings.analyse]
+title = "Analyse ligne"
+format = 'analysis'
 
 # Computed / added field
 [smart_views.add_field.order_link]

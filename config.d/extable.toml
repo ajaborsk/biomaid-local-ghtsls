@@ -53,9 +53,9 @@ column.commande = {'type'='string', 'data'='concat(gest_ec, format("{:06d}", no_
 column.libelle = {'type'='string', 'data'='concat(libelle_l1_lc, concat("\n", concat(libelle_l2_lc, concat("\n", concat(libelle_l3_lc, concat("\n", libelle_l4_lc))))))'}
 column.bloc_note = {'type'='string', 'data'='concat(bloc_note_1_ec, concat("\n", bloc_note_2_ec))'}
 # Analyse de la commande, stockée dans la première ligne de la commande
-column.analyse_cmd = {'type'='json', 'data'='{}'}
+column.analyse_cmd = {'type'='json', 'data'='{}', 'format'='analysis'}
 # Analyse de la ligne de commande
-column.analyse = {'type'='json', 'data'='{}'}
+column.analyse = {'type'='json', 'data'='{}', 'format'='analysis'}
 
 key = ['commande', 'no_ligne_lc']
 
@@ -91,7 +91,8 @@ column.actif_uf_df2 = {type = "money", src_column = "Actif UF (df2)"}
 column.fiche = {'type'='string', 'data'='concat(exercice_d_acquisition_fi, concat("-", format("{:05d}", no_fiche_fi)))'}
 column.code = {'type'='string', 'data'='concat(concat(concat(exercice_d_acquisition_fi, concat("-", format("{:05d}", no_fiche_fi))), "-"), format("{:04d}", no_uf_df))'}
 column.commande = {'type'='string', 'data'="concat(gest_cde_df, format('{:06d}', no_cde_df))"}
-column.analyse = {'type'='json', 'data'='"{}"'}
+column.analyse = {'type'='json', 'data'='"{}"', 'format'='analysis'}
+column.residuel = {'type'='money', 'data'='residuel(actif_uf_df2,duree_fi2,date_de_mise_en_service_fi)'}
 
 key = ['code']
 
