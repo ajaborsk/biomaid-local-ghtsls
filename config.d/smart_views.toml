@@ -249,7 +249,7 @@ data = "day_age(reception)"
 # ---------------------------------------------------------------------------------------------------------------------
 name = 'assets'
 model = ['extable', 'ExtImmobilisation']
-columns = ['code', 'exercice_d_acquisition_fi', 'fiche', 'order_link', 'libelle_du_bien_fi',
+columns = ['code', 'exercice_d_acquisition_fi', 'fiche', 'order_link', 'compte_ordonnateur_cp', 'libelle_du_bien_fi',
     'date_de_mise_en_service_fi', 'duree_fi2', 'qte_uf_df1', 'repart_uf_df1', 'actif_uf_df2', 'residuel', 'analyse']
 exports = {xlsx = {engine= 'xlsx', label= 'Microsoft Excel 2003+', filename= "Immobilisations.xlsx" }}
 
