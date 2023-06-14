@@ -1,3 +1,6 @@
+[options]
+smart_view_orders = true
+
 [[smart_views]]
 # ---------------------------------------------------------------------------------------------------------------------
 # Definition for named SmartView 'orders'

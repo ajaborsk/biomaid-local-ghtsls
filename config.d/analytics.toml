@@ -1,13 +1,11 @@
 [[analytics.queries]]
 
 name = 'factures'
-parameters = [
-    {'name'='gestionnaire', 'default'= nan },
-]
+parameters = [{ name = 'gestionnaire', default = 'nan' }]
 definition = [
-    'ExtFacture', # Toutes les factures
-    {'filter'=12},  # ...filter...
-    {'field'=12},  # ...annotate...
+    { src = 'ExtFacture' }, # Toutes les factures
+    { filter = 12 },        # ...filter...
+    { field = 12 },         # ...annotate...
 ]
 
 # Reconciliation (join) mode can be :
@@ -31,9 +29,21 @@ name = 'test_indicator'
 [[analytics.reports]]
 
 name = 'test_report'
-cached = 86400  # One full day
+cached = 86400       # One full day
 
 
 [[analytics.widgets]]
 
 name = 'test_widget'
+
+[[analytics.datasources]]
+
+name = 'test0'
+engine = 'polike'
+inputs = { i1 = 'ppo' }
+outputs = []
+
+
+[[analytics.datasources]]
+
+name = 'test1'
