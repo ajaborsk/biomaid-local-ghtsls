@@ -1,0 +1,60 @@
+[CampagneSmartView.natures]
+label = "Natures des demandes"
+
+[CampagneSmartView.dispatcher]
+label = "Répartisseur"
+help_text = """Utilisateur en charge de la répartition des demandes entre
+ les différents programmes de la campagne et de la nomination d'un
+ expert technique pour l'analyse de la demande. 
+ Une campagne sans répartisseur sera considérée comme virtuelle (cf. documentation)"""
+
+[CampagneSmartView.message]
+label = "Message à l'utilisateur"
+help_text = """Blabla"""
+
+
+[CampagneSmartView]
+form_layout = """
+#
+    # Campagne
+        <code>  <nom--+-->
+        <description-+--+->
+        <message-+-+-->
+        <discipline> <natures>  <dispatcher>
+        <debut_recensement> <fin_recensement>
+"""
+
+[DemTvxSmartView.tvx_etage]
+hidden = true
+null = false
+
+[DemTvxSmartView.autre_argumentaire]
+label = "Argumentaire"
+
+[DemTvxSmartView]
+form_layout = """
+        # demande de travaux courants {{ instance.code }}
+            <calendrier>
+            <discipline_dmd> <nature> <quantite> <cause> <priorite>
+            <couts_complementaires>
+            <nom_projet>
+            <redacteur>
+            # Demandeur
+                <referent> <redacteur_view>
+            # Projet
+                <tvx_batiment> <tvx_etage>
+                <uf> <localisation>
+                <service_view> <pole_view>
+                <libelle-+---->
+                <description+--->
+                # Contraintes dans la zone
+                    <tvx_contrainte_lib----> <tvx_contrainte-+--->
+                    <tvx_contrainte_alib---> <tvx_contrainte-+--->
+                    <tvx_contrainte_lar----> <tvx_contrainte-+--->
+                    <tvx_contrainte_autre--> <tvx_contrainte-+--->
+            # Argumentaire
+                <tvx_priorite--+--+--+-->
+                <autre_argumentaire--+---+--+-->
+            # Documents joints
+                <--documents_sf-+--+--+->
+"""

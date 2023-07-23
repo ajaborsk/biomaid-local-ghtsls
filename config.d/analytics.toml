@@ -1,49 +1,152 @@
-[[analytics.queries]]
+# [[analytics.queries]]
 
-name = 'factures'
-parameters = [{ name = 'gestionnaire', default = 'nan' }]
-definition = [
-    { src = 'ExtFacture' }, # Toutes les factures
-    { filter = 12 },        # ...filter...
-    { field = 12 },         # ...annotate...
-]
+# name = 'factures'
+# parameters = [{ name = 'gestionnaire', default = 'nan' }]
+# definition = [
+#     { src = 'ExtFacture' }, # Toutes les factures
+#     { filter = 12 },        # ...filter...
+#     { field = 12 },         # ...annotate...
+# ]
 
-# Reconciliation (join) mode can be :
-#  - Outer: all left records are kept and only right matching records are kept
-#  - Full: all records are kept. If no match is found for a column, the other is filled with NULL values
+# # Reconciliation (join) mode can be :
+# #  - Outer: all left records are kept and only right matching records are kept
+# #  - Full: all records are kept. If no match is found for a column, the other is filled with NULL values
 
-# Reconciliation (join) matching can be :
-#  - Exact: all the columns of the right records MUST match the columns of the left records (common SQL mode)
-#  - Approximative: ... Need to be defined ...
+# # Reconciliation (join) matching can be :
+# #  - Exact: all the columns of the right records MUST match the columns of the left records (common SQL mode)
+# #  - Approximative: ... Need to be defined ...
 
-[[analytics.axes]]
+# [[analytics.axes]]
 
-query = 'factures'
-
-
-[[analytics.indicators]]
-
-name = 'test_indicator'
+# query = 'factures'
 
 
-[[analytics.reports]]
+# [[analytics.indicators]]
 
-name = 'test_report'
-cached = 86400       # One full day
-
-
-[[analytics.widgets]]
-
-name = 'test_widget'
-
-[[analytics.datasources]]
-
-name = 'test0'
-engine = 'polike'
-inputs = { i1 = 'ppo' }
-outputs = []
+# name = 'test_indicator'
 
 
-[[analytics.datasources]]
+# [[analytics.reports]]
 
-name = 'test1'
+# name = 'test_report'
+# cached = 86400       # One full day
+
+
+# =====================================================================================================================
+# test_analytic
+# =====================================================================================================================
+[[analytics.data]]
+id = "test_analytic"
+label = "Constante à 0"
+help_text = ""
+parameters = {}
+# 'from' should be a valid python expression. Engines and others analytics data will be provided 
+#   as globals and parameters as locals on evaluation
+from = """0"""
+structure = {}
+schedule = ''
+# This analytics data (output) is stored in the database
+destinations = []
+# keep data one minute
+validity = 0
+# No history needed for now
+history = {}
+
+# =====================================================================================================================
+# nb_demandes_a_dispatcher
+# =====================================================================================================================
+[[analytics.data]]
+id = "nb_demandes_a_dispatcher"
+label = "Nombre de demandes à dispatcher"
+help_text = "Nombre de demandes à dispatcher, par utilisateur et par campagne"
+# data definition, as a python expression
+from = """
+DemandesADispatcher(
+    the_user=user, 
+    the_campaign=campaign
+)().count"""
+structure = {}
+schedule = 'mon 3:5:0'
+# This analytics data (output) is stored in the database
+destinations = ['database']
+# keep data one minute
+validity = 60
+# No history needed for now
+history = {}
+
+[analytics.data.parameters.user]
+label = "Utilisateur"
+help_text = "id de l'utilisateur"
+default = -1
+
+[analytics.data.parameters.campaign]
+label = "Campagne"
+default = -1
+
+# =====================================================================================================================
+# Analyse des commandes (IF...)
+# =====================================================================================================================
+
+# =====================================================================================================================
+# Analyse des immobilisations
+# =====================================================================================================================
+
+# =====================================================================================================================
+# Analyse des équipements (DRACHAR, DRA94, magh2, Asset+)
+# =====================================================================================================================
+
+# =====================================================================================================================
+# Alertes
+# =====================================================================================================================
+
+# =====================================================================================================================
+# ...
+# =====================================================================================================================
+
+# =====================================================================================================================
+
+
+# [[analytics.data_processors]]
+
+# id = 'test0'
+# engine = 'polike'
+# inputs = {}
+
+# [analytics.data_processors.outputs.u]
+# popo = 12
+
+# [[analytics.data_processors]]
+# id = 'demandes_a_dispatcher'
+# active = false
+# label = "Calcul des demandes à répartir"
+# help_text = "Blabla"
+# engine = 'dem.apps.DemandesADispatcher'
+# # no schedule ==> run only on demand
+# schedule = {}
+# params = {}
+# inputs = {}
+
+# [analytics.data_processors.outputs.counts]
+# label = "demandes_a_dispatcher"
+# help_text = "Nombre de demandes à dispatcher, par utilisateur et par campagne"
+# structure = {}
+# # No history needed for now
+# history = {}
+# # This analytics data (output) is stored in the alert system
+# storage = 'database'
+# # keep data one minute
+# validity = 60
+
+# [analytics.datasourc=es.outputs.alerts]
+# label = "dfgdf"
+# help_text = "Alertes des demandes à dispatcher"
+# # No history needed
+# history = {}
+# # This analytics data (output) is stored in the alert system
+# storage = 'alerts'
+# # ten days
+# validity = 864000
+
+# [[analytics.widgets]]
+
+# name = 'test_widget'

@@ -99,37 +99,38 @@ column.residuel = { 'type' = 'money', 'data' = 'residuel(actif_uf_df2,duree_fi2,
 
 key = ['code']
 
-#[[extable.tables]]
-#name = 'Facture'
-#engine = 'csv'
-#path = 'prodige'
+[[extable.tables]]
+name = 'Facture'
+engine = 'csv'
+path = 'prodige'
+filename = "last:e_not_a_file_xport-*.csv"
 #filename = "last:export-*.csv"
-#separator = ";"
-#preprocess = "fix_nb_columns"
+separator = ";"
+preprocess = "fix_nb_columns"
 
-#column.type = {type = "string", src_column = "Type"}
-#column.fournisseur = {type = "string", src_column = "Fournisseur"}
-#column.reference_facture = {type = "string", src_column = "Référence facture"}
-#column.emission = {type = "datetime", src_column = "Emission"}
-#column.reception = {type = "datetime", src_column = "Réception"}
-#column.n_engagement = {type = "string", src_column = "N° engagement Chorus"}
-#column.montant_ttc = {type = "string", src_column = "Montant TTC"}
-#column.etat = {type = "string", src_column = "Etat"}
-#column.n_de_lot = {type = "string", src_column = "N° de lot"}
-#column.code_service = {type = "string", src_column = "Code service"}
-#column.n_liq = {type = "integer", src_column = "N° Liq."}
-#column.traite_automatiquement = {type = "string", src_column = "Traité Automatiquement"}
-#column.commande_magh2 = {type = "string", src_column = "Commande Magh2"}
-#column.n_mandat = {type = "integer", src_column = "N° Mandat"}
-#column.dernier_commentaire = {type = "string", src_column = "Dernier commentaire"}
+column.type = {type = "string", src_column = "Type"}
+column.fournisseur = {type = "string", src_column = "Fournisseur"}
+column.reference_facture = {type = "string", src_column = "Référence facture"}
+column.emission = {type = "datetime", src_column = "Emission"}
+column.reception = {type = "datetime", src_column = "Réception"}
+column.n_engagement = {type = "string", src_column = "N° engagement Chorus"}
+column.montant_ttc = {type = "string", src_column = "Montant TTC"}
+column.etat = {type = "string", src_column = "Etat"}
+column.n_de_lot = {type = "string", src_column = "N° de lot"}
+column.code_service = {type = "string", src_column = "Code service"}
+column.n_liq = {type = "integer", src_column = "N° Liq."}
+column.traite_automatiquement = {type = "string", src_column = "Traité Automatiquement"}
+column.commande_magh2 = {type = "string", src_column = "Commande Magh2"}
+column.n_mandat = {type = "integer", src_column = "N° Mandat"}
+column.dernier_commentaire = {type = "string", src_column = "Dernier commentaire"}
 
 # Add (computed) columns
-#column.commande = {'type'='string', 'data'='find_magh2_order(n_engagement)'}
-#column.montant_eur_ttc = {'type'='money', 'data'='to_amount(montant_ttc)'}
+column.commande = {'type'='string', 'data'='find_magh2_order(n_engagement)'}
+column.montant_eur_ttc = {'type'='money', 'data'='to_amount(montant_ttc)'}
 
-# column.json_order_link = {'type'='string', 'data'={'model'='Commande','conditions'={},'foreign'={'commande'='commande'}}}
+#column.json_order_link = {'type'='string', 'data'={'model'='Commande','conditions'={},'foreign'={'commande'='commande'}}}
 
-# key = ['fournisseur', 'reference_facture']
+key = ['fournisseur', 'reference_facture']
 
 [[extable.tables]]
 name = 'ProcedureAchat'
