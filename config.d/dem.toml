@@ -1,3 +1,57 @@
+[dem.home]
+template = """
+{% load url_kwargs %}
+<div class="doc-page">
+    <h1>Portail CHU Bordeaux {{ main_name }}</h1>
+    <div class="main-block">
+        <div class="main-tile-c13 ie-row-1">
+            <div class="main-tile-title">Bienvenue</div>
+            <p>Cet espace est mis à votre disposition par la Direction de l'Ingénierie Biomédicale et des
+                Equipements pour vous permettre de faciliter le recensement des besoins en matériel et projets
+                informatiques. Il vous
+                permet également de mieux suivre l'instruction et l'arbitrage de ces demandes.</p>
+            <p>Il vous permet de suivre, en toute transparence, toutes les étapes institutionnelles par lesquelles
+                passent vos demandes, depuis le recensement jusqu'à la réalisation des acquisitions, en passant par
+                leur
+                arbitrage.</p>
+            <p>A tout moment vous pouvez revenir à cette page en cliquant sur le menu "Accueil".</p>
+        </div>
+        <div class="main-tile-c1 ie-row-3">
+            <div class="main-tile-title">Recensement des besoins 2023</div>
+            <p>Le recensement des besoins en matériels (médicaux ou non) est disponible toute l'année !</p>
+            <p>Vous pouvez maintenant créer vos demandes d'équipement, et ce jusqu'à l'automne 2022.</p>
+            <p></p>
+            <br>
+            <div class="main-tile-title">Demandes 2022</div>
+            <p>les demandes effectuées dans le cadre du recenssement 2022 ont été validées par la direction. Pour
+                connaître le résultat, rendez-vous dans la rubrique «<a
+                        href="{% url_kwargs 'drachar:suivi-plans' %}">&nbsp;DEMANDES ACCEPTEES&nbsp;</a>».</p>
+            <p></p>
+
+        </div>
+        <div class="main-tile-c2 ie-row-3">
+            <div class="main-tile-title">Historique des demandes</div>
+            <p>Toutes les demandes, ainsi que les résultats des
+                arbitrages sont disponibles en permanence.</p>
+            <p>Dans la rubrique «<a href="{% url_kwargs 'drachar:suivi-plans' %}">&nbsp;DEMANDES ACCEPTEES&nbsp;</a>»,
+                vous
+                trouverez les demandes validées, celles en cours d'acquisition ou celles mises en service depuis
+                moins de 3 mois. Dans la rubrique «<a href="{% url_kwargs 'dem:demandes-tout' %}">&nbsp;DEMANDES
+                    ARCHIVEES&nbsp;</a>» sont visibles les demandes
+                refusées ou celles acceptées et mises en service depuis plus de 3 mois.</p>
+        </div>
+        <div class="main-tile-c3 ie-row-3">
+            <div class="main-tile-title">Suivi des acquisitions</div>
+            <p>Le portail permet de suivre en temps réel le déroulement des acquisitions liées aux demandes
+                validées.</p>
+            <p>Cette fonctionnalité est disponible dans la rubrique «<a
+                    href="{% url_kwargs 'drachar:suivi-plans' %}">&nbsp;DEMANDES ACCEPTEES&nbsp;</a>».</p>
+        </div>
+
+    </div>
+</div>
+"""
+
 [CampagneSmartView.natures]
 label = "Natures des demandes"
 
@@ -16,7 +70,7 @@ help_text = """Blabla"""
 [CampagneSmartView]
 form_layout = """
 #
-    # Campagne
+    # Campagne 
         <code>  <nom--+-->
         <description-+--+->
         <message-+-+-->
