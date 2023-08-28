@@ -1,4 +1,10 @@
 [dem.home]
+
+# Template used to generate the main page
+# Some variables are available (very few for now) :
+#  - url_prefix
+# The resulting HTML will be sanitized (using html-sanitizer https://pypi.org/project/html-sanitizer/) 
+# with a pretty strict configuration (named 'page_content', see in Django settings the variable HTML_SANITIZERS)
 template = """
 {% load url_kwargs %}
 <div class="doc-page">

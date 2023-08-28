@@ -1,140 +1,146 @@
 [[workflows]]
 
-  # The workflow name / key
-  name = "demo"
+# The workflow name / key
+name = "demo"
 
-  # Model (SmartView ?) to be used. Some data will be fetched from it: fields names, defaults values,
-  #  computed fields (and their dependencies), etc.
-  # (unused for now)
-  model = 'model'
+# (Overoly) Model to be used. Some data will be fetched from it: fields names, defaults values,
+#  computed fields (and their dependencies), etc.
+# (unused for now)
+model = 'model'
 
-  # 'Create' section mean 'object creation' = How to enter the workflow.
-  [workflows.create]
-    # These are model-level roles !
-    roles = ['DIR', 'CAD']
-    [workflows.create.permissions]
-      # Insert here which fields that can be set at object creation. Other fields will be set
-      #  with default value (guessed from model definitions / SmartView)
-      nom = true
+# 'Create' section mean 'object creation' = How to enter the workflow.
+[workflows.create]
+# These are model-level roles !
+roles = ['DIR', 'CAD']
 
-  # List of (named) conditions, used later by the actions
-  # Note : This is probably the trickiest part of workflow definition...
-  # Usually a condition is only for a unique field (but several can be used if needed)
-  # IT IS NOT ALLOWED to share a field between conditions (this will raise a exception)
-  [workflows.conditions]
-    # For each condition, user MUST ensure that different values ARE distinct.
-    #  Furthermore, any values of the used field(s) MUST fall into exactly ONE (condition) 'value'.
-    #  The special value 'default' (if nothing other match) must be used if needed
-    cond1 = {values={unset={d1__isnull= true}, set= {d1__isnull= false}}}
-    cond2 = {values={unset={d2__isnull= true}, set= {d2__isnull= false}}}
+[workflows.create.permissions]
+# Insert here which fields can be set at object creation. Other fields will be set
+#  with default values (guessed from (Overoly) model definitions)
+nom = true
 
-    # One can also use this, clearer, alternate form, but only at the end of the 'conditions' section
-    [workflows.conditions.active]
-      [workflows.conditions.active.values]
-        yes = {cloture__isnull= true}
-        no = {cloture__isnull= false}
+# List of (named) conditions, used later by the actions
+# Note : This is probably the trickiest part of workflow definition...
+# Usually a condition is only for a unique field (but several can be used if needed)
+# IT IS NOT ALLOWED to share a field between conditions (this will raise a exception)
+[workflows.conditions]
+# For each condition, user MUST ensure that different values ARE distinct.
+#  Furthermore, any values of the used field(s) MUST fall into exactly ONE (condition) 'value'.
+#  The special value 'default' (if nothing other match) must be used if needed
+cond1 = { values = { unset = { d1__isnull = true }, set = { d1__isnull = false } } }
+cond2 = { values = { unset = { d2__isnull = true }, set = { d2__isnull = false } } }
 
-  [workflows.actions]
-    [workflows.actions.modify]
-      # Roles that are allowed to perform this action
-      # These are object-level role(s) !
-      roles = ['OWN']
-      # On which condition(s) this action can be performed (use the named conditions & values defined above)
-      condition = {active='yes'}
-      [workflows.actions.modify.permissions]
-        # The object fields that are allowed to be modified for this action
-        # For now, only 'true' (=> can be modified) and 'false' (cannot be modified) values are allowed
-        # Every field of the which is not in this list is not allowed for modification
-        nom = true
-    [workflows.actions.update1]
-      # These are object-level role(s) !
-      roles = ['R1']
-      condition = {active='yes'}
-      [workflows.actions.update1.permissions]
-        d1 = true
-    [workflows.actions.update2]
-      # These are object-level role(s) !
-      roles = ['R2']
-      condition = {active='yes'}
-      [workflows.actions.update2.permissions]
-        d2 = true
-    [workflows.actions.close]
-      # These are object-level role(s) !
-      roles = ['ADM']
-      condition = {active='yes',cond1='set',cond2='set'}
-      [workflows.actions.close.permissions]
-        cloture = true
-    [workflows.actions.reopen]
-      # These are object-level role(s) !
-      roles = ['ADM']
-      condition = {active='no'}
-      [workflows.actions.reopen.permissions]
-        cloture = true
+# One can also use this, clearer, alternate form, but only at the end of the 'conditions' section
+[workflows.conditions.active]
+[workflows.conditions.active.values]
+yes = { cloture__isnull = true }
+no = { cloture__isnull = false }
+
+[workflows.actions]
+
+[workflows.actions.modify]
+# Roles that are allowed to perform this action
+# These are object-level role(s) !
+roles = ['OWN']
+# On which condition(s) this action can be performed (use the named conditions & values defined above)
+condition = { active = 'yes' }
+[workflows.actions.modify.permissions]
+# The object fields that are allowed to be modified for this action
+# For now, only 'true' (=> can be modified) and 'false' (cannot be modified) values are allowed
+# Every field of the which is not in this list is not allowed for modification
+nom = true
+
+[workflows.actions.update1]
+# These are object-level role(s) !
+roles = ['R1']
+condition = { active = 'yes' }
+[workflows.actions.update1.permissions]
+d1 = true
+
+[workflows.actions.update2]
+# These are object-level role(s) !
+roles = ['R2']
+condition = { active = 'yes' }
+[workflows.actions.update2.permissions]
+d2 = true
+
+[workflows.actions.close]
+# These are object-level role(s) !
+roles = ['ADM']
+condition = { active = 'yes', cond1 = 'set', cond2 = 'set' }
+[workflows.actions.close.permissions]
+cloture = true
+
+[workflows.actions.reopen]
+# These are object-level role(s) !
+roles = ['ADM']
+condition = { active = 'no' }
+[workflows.actions.reopen.permissions]
+cloture = true
 
 [[workflows]]
-  # Demandes (not implemented yet)
-  name = "demandes" # Demandes
+# Demandes (not implemented yet)
+name = "demandes" # Demandes
 
 [[workflows]]
-  # Role scopes
-  name = "role_scope"
+# Role scopes
+name = "role_scope"
 
-  # 'Create' section mean 'object creation' = How to enter the workflow.
-  [workflows.create]
-    # These are model-level roles !
-    roles = ['ADM']
-    [workflows.create.permissions]
-      # Insert here which fields that can be set at object creation. Other fields will be set
-      #  with default value (guessed from model definitions / SmartView)
-      user = true
-      role_code = true
-      uf = true
-      service = true
-      centre_responsabilite = true
-      pole = true
-      site = true
-      etablissement = true
-      discipline = true
-      domaine_prefix = true
-      cloture = true
+# 'Create' section mean 'object creation' = How to enter the workflow.
+[workflows.create]
+# These are model-level roles !
+roles = ['ADM']
+[workflows.create.permissions]
+# Insert here which fields that can be set at object creation. Other fields will be set
+#  with default value (guessed from model definitions / SmartView)
+user = true
+role_code = true
+uf = true
+service = true
+centre_responsabilite = true
+pole = true
+site = true
+etablissement = true
+discipline = true
+domaine_prefix = true
+cloture = true
 
-  [workflows.conditions]
-    # For each condition, user MUST ensure that different values ARE distinct.
-    #  Furthermore, any values of the used field(s) MUST fall into exactly ONE (condition) 'value'.
-    #  The special value 'default' (if nothing other match) must be used if needed
-    [workflows.conditions.active]
-      [workflows.conditions.active.values]
-        yes = {cloture__isnull= true}
-        no = {cloture__isnull= false}
+[workflows.conditions]
+# For each condition, user MUST ensure that different values ARE distinct.
+#  Furthermore, any values of the used field(s) MUST fall into exactly ONE (condition) 'value'.
+#  The special value 'default' (if nothing other match) must be used if needed
+[workflows.conditions.active]
+[workflows.conditions.active.values]
+yes = { cloture__isnull = true }
+no = { cloture__isnull = false }
 
-  [workflows.actions]
-    [workflows.actions.modify]
-      # Roles that are allowed to perform this action
-      # These are object-level role(s) !
-      roles = ['ADM']
-      condition = {active='yes'}
-      [workflows.actions.modify.permissions]
-        # The object fields that are allowed to be modified for this action
-        # For now, only 'true' (=> can be modified) and 'false' (cannot be modified) values are allowed
-        # Every field of the which is not in this list is not allowed for modification
-        user = true
-        role_code = true
-        uf = true
-        service = true
-        centre_responsabilite = true
-        pole = true
-        site = true
-        etablissement = true
-        discipline = true
-        domaine_prefix = true
-        cloture = true
-    [workflows.actions.reopen]
-      # Roles that are allowed to perform this action
-      # These are object-level role(s) !
-      roles = ['ADM']
-      condition = {active='no'}
-      [workflows.actions.reopen.permissions]
-        # The object fields that are allowed to be modified for this action
-        # For now, only 'true' (=> can be modified) and 'false' (cannot be modified) values are allowed
-        # Every field of the which is not in this list is not allowed for modification
-        cloture = true
+[workflows.actions]
+[workflows.actions.modify]
+# Roles that are allowed to perform this action
+# These are object-level role(s) !
+roles = ['ADM']
+condition = { active = 'yes' }
+[workflows.actions.modify.permissions]
+# The object fields that are allowed to be modified for this action
+# For now, only 'true' (=> can be modified) and 'false' (cannot be modified) values are allowed
+# Every field of the which is not in this list is not allowed for modification
+user = true
+role_code = true
+uf = true
+service = true
+centre_responsabilite = true
+pole = true
+site = true
+etablissement = true
+discipline = true
+domaine_prefix = true
+cloture = true
+[workflows.actions.reopen]
+# Roles that are allowed to perform this action
+# These are object-level role(s) !
+roles = ['ADM']
+condition = { active = 'no' }
+[workflows.actions.reopen.permissions]
+# The object fields that are allowed to be modified for this action
+# For now, only 'true' (=> can be modified) and 'false' (cannot be modified) values are allowed
+# Every field of the which is not in this list is not allowed for modification
+cloture = true
