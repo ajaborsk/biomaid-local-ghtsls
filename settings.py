@@ -35,6 +35,11 @@ logging.basicConfig(
 logging.getLogger(__name__).info("Configuration GHT SLS...")
 
 INSTALLED_APPS += [
+    "dem",
+    "drachar",
+    "marche",
+    "geprete",
+    "finance",
     # 'dra94.apps.Dra94Config',
 ]
 
