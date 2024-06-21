@@ -18,7 +18,7 @@ key = ['no_fournisseur_fr']
 name = 'Commande'
 engine = 'csv'
 path = 'magh2'
-filename = 'all:commandes/chuap_*.csv'
+filename = 'last:commandes/chuap_*.csv'
 
 # Guessed columns types from extable_guess command
 column.gest_ec = { type = "string", src_column = "Gest. (ec)" }
